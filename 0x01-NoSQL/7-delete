@@ -1,0 +1,24 @@
+import pymongo
+import sys
+
+# Get the database name from the command line argument
+db_name = sys.argv[1]
+
+# Set up a MongoClient instance
+client = pymongo.MongoClient()
+
+# Get the specified database
+db = client[db_name]
+
+# Get the school collection in the database
+school = db['school']
+
+# Define the query to match documents with name="Holberton school"
+query = {'name': 'Holberton school'}
+
+# Delete all documents that match the query
+result = school.delete_many(query)
+
+# Print out the number of documents deleted
+print(f'{result.deleted_count} documents deleted.')
+

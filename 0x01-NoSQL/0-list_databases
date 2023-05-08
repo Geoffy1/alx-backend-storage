@@ -1,0 +1,12 @@
+import pymongo
+
+# Set up a MongoClient instance
+client = pymongo.MongoClient()
+
+# List all databases in the client
+db_list = client.list_database_names()
+
+# Print out the database names
+for db_name in db_list:
+    print(db_name)
+

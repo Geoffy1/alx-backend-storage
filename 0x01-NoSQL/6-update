@@ -1,0 +1,25 @@
+import pymongo
+import sys
+
+# Get the database name from the command line argument
+db_name = sys.argv[1]
+
+# Set up a MongoClient instance
+client = pymongo.MongoClient()
+
+# Get the specified database
+db = client[db_name]
+
+# Get the school collection in the database
+school = db['school']
+
+# Define the update operation
+query = {'name': 'Holberton school'}
+update = {'$set': {'address': '972 Mission street'}}
+
+# Update all documents that match the query
+result = school.update_many(query, update)
+
+# Print out the number of documents updated
+print(f'{result.modified_count} documents updated.')
+

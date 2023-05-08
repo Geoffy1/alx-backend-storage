@@ -1,0 +1,22 @@
+import pymongo
+import sys
+
+# Get the database name from the command line argument
+db_name = sys.argv[1]
+
+# Set up a MongoClient instance
+client = pymongo.MongoClient()
+
+# Get the specified database, creating it if necessary
+db = client[db_name]
+
+# Get the school collection in the database, creating it if necessary
+school = db['school']
+
+# Insert a document into the collection
+document = {'name': 'Holberton school'}
+result = school.insert_one(document)
+
+# Print out the ID of the inserted document
+print('Inserted document with ID:', result.inserted_id)
+

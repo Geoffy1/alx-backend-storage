@@ -1,0 +1,11 @@
+import pymongo
+
+# Set up a MongoClient instance
+client = pymongo.MongoClient()
+
+# Get the my_db database, creating it if necessary
+my_db = client['my_db']
+
+# Print out the name of the database
+print(my_db.name)
+

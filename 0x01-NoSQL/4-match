@@ -1,0 +1,23 @@
+import pymongo
+import sys
+
+# Get the database name from the command line argument
+db_name = sys.argv[1]
+
+# Set up a MongoClient instance
+client = pymongo.MongoClient()
+
+# Get the specified database
+db = client[db_name]
+
+# Get the school collection in the database
+school = db['school']
+
+# Find all documents with name="Holberton school"
+query = {'name': 'Holberton school'}
+results = school.find(query)
+
+# Print out the matching documents
+for document in results:
+    print(document)
+
