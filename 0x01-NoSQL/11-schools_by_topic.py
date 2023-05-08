@@ -1,19 +1,18 @@
-import pymongo
+#!/usr/bin/env python3
+'''a Python function that returns the list of school having a specific topic
+'''
+
 
 def schools_by_topic(mongo_collection, topic):
-    # Use the find() method to get all documents with the specified topic
-    cursor = mongo_collection.find({'topics': topic})
-    # Return a list of dictionaries representing the matching documents
-    return list(cursor)
-# Set up a MongoClient instance and get the database and collection
-client = pymongo.MongoClient()
-db = client['my_db']
-collection = db['school']
-
-# Get a list of all schools that have the topic 'data science'
-matching_schools = schools_by_topic(collection, 'data science')
-
-# Print out the names of the matching schools
-for school in matching_schools:
-    print(school['name'])
-
+    '''Prototype: def schools_by_topic(mongo_collection, topic):
+    mongo_collection will be the pymongo collection object
+    topic (string) will be topic searched
+    '''
+    topic_filter = {
+        'topics': {
+            '$elemMatch': {
+                '$eq': topic,
+            },
+        },
+    }
+    return [doc for doc in mongo_collection.find(topic_filter)]
