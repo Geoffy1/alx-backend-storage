@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+'''Task 15
+'''
+from pymongo import MongoClient
+
+
 def log_stats():
     """Log statistics from the database logs in MongoDB"""
 
@@ -23,4 +29,3 @@ def log_stats():
     ]
     for ip in collection_logs.aggregate(pipeline):
         print(f"\t{ip['_id']}: {ip['count']}")
-
