@@ -1,17 +1,13 @@
-import pymongo
+#!/usr/bin/env python3
+'''/Write a Python function that inserts a new document in a collection based on kwargs:
+Prototype: def insert_school(mongo_collection, **kwargs):
+mongo_collection will be the pymongo collection object
+Returns the new _id
+'''
+
 
 def insert_school(mongo_collection, **kwargs):
-    # Insert the new document into the collection and return the _id
+    '''Inserts a new document in a collection.
+    '''
     result = mongo_collection.insert_one(kwargs)
     return result.inserted_id
-# Set up a MongoClient instance and get the database and collection
-client = pymongo.MongoClient()
-db = client['my_db']
-collection = db['school']
-
-# Insert a new document into the collection using the insert_school() function
-document_id = insert_school(collection, name='Holberton school', address='972 Mission street')
-
-# Print the _id of the inserted document
-print(document_id)
-
